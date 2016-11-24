@@ -1,0 +1,5 @@
+<%= form_for(@post) do |f| %>
+  <%= f.text_field :title, class: "form-control" %>
+  <%= f.text_area :content, class:"form-control" %>
+  <%= f.submit 'Submit' %>
+<% end %>
