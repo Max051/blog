@@ -1,9 +1,10 @@
 class PostsController < ApplicationController
+  before_action :authenticate_admin!, only: [:new,:create]
   def index
     @posts = Post.all
   end
   def new
-    @post = Post.new(params[:post])
+    @post = Post.new
   end
   def create
     @post = Post.new(post_parms)
@@ -15,7 +16,7 @@ class PostsController < ApplicationController
       redirect_to root_url
     end
   end
-
+private
   def post_parms
      params.require(:post).permit(:title,:content)
   end

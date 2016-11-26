@@ -10,6 +10,10 @@
   <% flash.each do |massageClass, massage| %>
      <div class="alert alert-<%= massageClass %>"><%= massage %></div>
   <% end %>
+  <% if admin_signed_in?  %>
+    <%= link_to 'Sign out', destroy_admin_session_path, method:"delete" %>
+<% end %>
+
 <%= yield %>
 
 </body>

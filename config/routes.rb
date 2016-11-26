@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
+
+  devise_for :admins, controllers:{
+        passwords: 'admins/passwords',
+        confirmations: 'admins/confirmations',
+        unlocks: 'admins/unlocks',
+        registrations: 'admins/registrations',
+        sessions: 'admins/sessions'
+  }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'posts#index'
 resources :posts
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

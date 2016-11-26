@@ -25,6 +25,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'bootstrap', '~> 4.0.0.alpha5'
 
+gem 'devise'
+gem 'dotenv-rails', :require => 'dotenv/rails-now'
+
+gem "recaptcha", require: "recaptcha/rails"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
