@@ -1,7 +1,9 @@
 <% @posts.each do |post| %>
-
   <h2><%= post.title  %></h2>
   <div class="">
     <%= post.content %>
   </div>
+  <%= link_to 'Edit',edit_post_path(post.id)%>
+  <%= link_to 'X',post, method: :delete,
+                                       data: { confirm: "You sure?" } %>
 <% end %>
