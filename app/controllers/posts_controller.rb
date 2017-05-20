@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 private
 #Strong parametrs
   def post_parms
-     params.require(:post).permit(:title,:content)
+     params.require(:post).permit(:title,:content,:tags)
   end
   #FInd right post to edit/destroy
   def find_post

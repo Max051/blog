@@ -43,11 +43,9 @@ ActiveRecord::Schema.define(version: 20161126134224) do
   create_table "posts", force: :cascade do |t|
     t.text     "title"
     t.text     "content"
-    t.integer  "admin_id"
+    t.text     "tags"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  add_index "posts", ["admin_id"], name: "index_posts_on_admin_id"
 
 end

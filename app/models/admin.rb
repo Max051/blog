@@ -7,7 +7,6 @@ class Admin < ActiveRecord::Base
   validates_uniqueness_of :id
   #validate only when trying to create
   validate :OneAdmin, :on => :create
-  has_many :posts
 
 private
 
