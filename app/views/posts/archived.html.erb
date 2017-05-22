@@ -1,4 +1,5 @@
-<div class="col-md-8">
+<div class="col-md-12">
+<p>Posts from:<%= @posts.first.created_at.year %>,<%= @posts.first.created_at.month%><p>
   <% @posts.each do |post| %>
     <h2><%= post.title  %></h2>
     <% if !post.tags.nil? %>
@@ -15,13 +16,4 @@
   <% end %>
 
 </div>
-  <div class="col-md-4">
-    Archive:
-    <% date_posts = @posts.order(created_at: :desc) %>
-    <% date_posts.each do |post_date| %>
-    <%= link_to post_date.created_at.strftime("%B %d, %Y"), archive_path(created_at: post_date.created_at) %>
-      
 
-    <% end %>
-
-  </div>

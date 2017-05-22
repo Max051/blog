@@ -39,11 +39,19 @@ class PostsController < ApplicationController
         redirect_to root_url
       end
   end
+  def archived
+    @posts = Post.where("strftime('%m', created_at) = ?","0#{created_params[:created_at].to_datetime.month.to_s}")
+    puts "-----------------"
+    puts "0#{created_params[:created_at].to_datetime.month.to_s}"
+  end
 private
-#Strong parametrs
+#Strong parame
   def post_parms
      params.require(:post).permit(:title,:content,:tags)
   end
+  def created_params
+    params.permit(:created_at)
+    end
   #FInd right post to edit/destroy
   def find_post
     @post = Post.find(params[:id])
