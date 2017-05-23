@@ -1,19 +1,9 @@
-<div class="col-md-12">
-<p>Posts from:<%= @posts.first.created_at.year %>,<%= @posts.first.created_at.month%><p>
-  <% @posts.each do |post| %>
-    <h2><%= post.title  %></h2>
-    <% if !post.tags.nil? %>
-      <% post.tags.split(",").each do |tag|%>
-        <span class="label label-primary"><%= tag %></span>
-      <% end %>
-    <% end %>
-    <div class="well well-lg">
-      <%= post.content %>
-    </div>
-    <%= link_to 'Edit',edit_post_path(post.id)%>
-    <%= link_to 'X',post, method: :delete,
-                                         data: { confirm: "You sure?" } %>
-  <% end %>
 
+
+<div class="col-md-8">
+<p>Posts from:<%= @posts.first.created_at.year %>,<%= @posts.first.created_at.month%><p>
+
+<%= render 'posts_feed' %>
 </div>
 
+<%= render 'layouts/archive' %>

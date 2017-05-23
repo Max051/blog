@@ -14,3 +14,19 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+document.addEventListener('DOMContentLoaded', function(){
+
+ let posts_editables =  document.getElementsByClassName("well")
+ console.log(posts_editables.length)
+    for(var i =0; i<posts_editables.length ;i++){
+        console.log('a')
+         posts_editables[i].addEventListener("mouseover", function(){
+            this.firstChild.nextSibling.classList.remove('none_visable')
+        })
+          posts_editables[i].addEventListener("mouseleave", function(){
+           this.firstChild.nextSibling.classList.add('none_visable')
+        })
+    }
+
+}, false);
+

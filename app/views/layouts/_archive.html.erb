@@ -1,0 +1,12 @@
+<div class="col-md-4">
+    Archive:
+    <% date_posts = @allPosts.order(created_at: :desc) %>
+    <% @dates = [] %>
+    <% date_posts.each do |post_date| %>
+      <% if !@dates.include?(post_date.created_at.strftime("%B, %Y")) %> 
+         <%= link_to post_date.created_at.strftime("%B, %Y"), archive_path(month: post_date.created_at.month,year: post_date.created_at.year),class: "archive_links" %>
+        <% @dates.push(post_date.created_at.strftime("%B, %Y")) %>
+      <% end %>
+    <% end %>
+
+  </div>

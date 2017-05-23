@@ -17,8 +17,12 @@ resources :posts
   #   get 'products/:id' => 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
-     get 'archive/:created_at' => 'posts#archived', as: 'archive'
+     get 'archive/:year/:month' => 'posts#archived', as: 'archive', constraints: {
+  year:       /\d{4}/,
+  month:      /\d{1,2}/,
+}
 
+     get 'tag/:tags' => 'posts#tag', as: 'tag'
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 

@@ -1,0 +1,18 @@
+ <% @posts.each do |post| %>
+    <h2><%= post.title  %></h2>
+      <% post.tags.split(",").each do |tag|%>
+         <span class="label label-primary"><%= link_to tag,tag_path(tags: tag)%></span>
+      <% end %>
+    
+    <div class="well well-lg">
+      <%= post.content %>
+    <div class = "none_visable">
+       <%= link_to 'X',post, method: :delete,
+                                         data: { confirm: "You sure?" },class: 'destroy_link' %>
+      <%= link_to 'Edit',edit_post_path(post.id),class: 'edit_link'%>
+   </div>
+    </div>
+    
+  
+<% end %>
+<%= will_paginate @posts, renderer: BootstrapPagination::Rails  %>

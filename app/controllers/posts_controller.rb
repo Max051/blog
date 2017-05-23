@@ -2,8 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_admin!, only: [:new,:create]
   #Get all posts
   def index
-    @posts = Post.all
-  end
+    getAll  
+   
+    @posts = @allPosts.paginate(:page => params[:page], :per_page => 5)   
+  end     
   #Get new post form
   def new
     @post = Post.new
@@ -40,17 +42,28 @@ class PostsController < ApplicationController
       end
   end
   def archived
-    @posts = Post.where("strftime('%m', created_at) = ?","0#{created_params[:created_at].to_datetime.month.to_s}")
-    puts "-----------------"
-    puts "0#{created_params[:created_at].to_datetime.month.to_s}"
+    @posts = Post.order(id: :desc).where("strftime('%m', created_at) = ? AND strftime('%Y', created_at) = ?","0#{created_params[:month]}",created_params[:year]).paginate(:page => params[:page], :per_page => 5)
+     getAll
   end
+  def tag  
+     @tag = tag_params[:tags]
+    @posts = Post.order(id: :desc).where("tags LIKE ?","%#{tag_params[:tags]}%").paginate(:page => params[:page], :per_page => 5)
+    getAll
+  end
+
+  def getAll
+   @allPosts = Post.order(id: :desc).all
+   end
 private
 #Strong parame
   def post_parms
      params.require(:post).permit(:title,:content,:tags)
   end
   def created_params
-    params.permit(:created_at)
+    params.permit(:month,:year)
+    end
+    def tag_params
+    params.permit(:tags)
     end
   #FInd right post to edit/destroy
   def find_post
