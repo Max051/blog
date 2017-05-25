@@ -1,9 +1,10 @@
  <% @posts.each do |post| %>
     <h2><%= post.title  %></h2>
+    <% if !post.tags.nil? %>
       <% post.tags.split(",").each do |tag|%>
-         <span class="label label-primary"><%= link_to tag,tag_path(tags: tag)%></span>
+         <span class="label label-primary tag"><%= link_to tag,tag_path(tags: tag), method: :get%></span>
       <% end %>
-    
+  <% end %>
     <div class="well well-lg">
       <%= post.content %>
     <div class = "none_visable">
@@ -12,7 +13,7 @@
       <%= link_to 'Edit',edit_post_path(post.id),class: 'edit_link'%>
    </div>
     </div>
-    
-  
+
+
 <% end %>
-<%= will_paginate @posts, renderer: BootstrapPagination::Rails  %>
+<%= will_paginate @posts, renderer: BootstrapPagination::Rails %>

@@ -2,10 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_admin!, only: [:new,:create]
   #Get all posts
   def index
-    getAll  
-   
-    @posts = @allPosts.paginate(:page => params[:page], :per_page => 5)   
-  end     
+    getAll
+
+    @posts = @allPosts.paginate(:page => params[:page], :per_page => 10)
+  end
   #Get new post form
   def new
     @post = Post.new
@@ -45,9 +45,9 @@ class PostsController < ApplicationController
     @posts = Post.order(id: :desc).where("strftime('%m', created_at) = ? AND strftime('%Y', created_at) = ?","0#{created_params[:month]}",created_params[:year]).paginate(:page => params[:page], :per_page => 5)
      getAll
   end
-  def tag  
+  def tag
      @tag = tag_params[:tags]
-    @posts = Post.order(id: :desc).where("tags LIKE ?","%#{tag_params[:tags]}%").paginate(:page => params[:page], :per_page => 5)
+    @posts = Post.order(id: :desc).where("tags LIKE ?","%#{tag_params[:tags]}%").paginate(:page => params[:page], :per_page => 10)
     getAll
   end
 
