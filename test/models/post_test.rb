@@ -2,8 +2,7 @@ require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
 def setup
-    @admin = admins(:pepe)
-    @post = @admin.posts.create({title: "Cool Title",content:"Very Intresting content"})
+    @post = posts(:postone)
   end
 
   test "post is valid" do
@@ -16,5 +15,9 @@ def setup
   test "post must have title" do
     @post.title = ""
     assert_not @post.valid?
+  end
+  test "post don't have to have tags" do
+    @post.tags = ""
+    assert @post.valid?
   end
 end
